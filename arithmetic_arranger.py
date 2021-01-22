@@ -1,4 +1,5 @@
-def arithmetic_arranger(problems):
+def arithmetic_arranger(problems, display_ans):
+    problems = [ string.split(' ') for string in problems ]
+    
 
-
-    return arranged_problems
+    return problems
