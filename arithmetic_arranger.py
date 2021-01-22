@@ -1,5 +1,21 @@
 def arithmetic_arranger(problems, display_ans):
     problems = [ string.split(' ') for string in problems ]
+    # problemDict = [{
+    #     "top": problems[x][0],
+    #     "operator": problems[x][1]
+    #     "bottom": problems[x][2],
+    #     "top_len": problems[x][0].length
+    #     "bottom_len": problems[x][2].length
+    #     "max_char_len": max(top_len, bot_len),
+    #     "total_char_len": max_char_length + 2,
+    #     "string_1": '{total_char_len - top_len * " "}{top}'
+    #     "string_2": '{operator}{total_char_len - bottom_len - 1 * " "}{bottom}'
+    #     "string_3": '{total_char_len * "-"}
+    # }]
+    # 
+    # dont form the answer until after the dictionary array is filled
+    # answer = [string_1, string_2, string_3, (string_4)]
+    # return answer.join("\n")
     
     print("{0}  {1}  {2}  {3}".format(problems[0][0], problems[1][0], problems[2][0], problems[3][0]))
     return "done"
