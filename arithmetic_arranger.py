@@ -15,5 +15,13 @@ def arithmetic_arranger(problems, display_ans):
 # but how are the spaces determined?
 #   ["3 + 855", "3801 - 2", "45 + 43", "123 + 49"]
 # expected = "    3      3801      45      123\n+ 855    -    2    + 43    +  49\n-----    ------    ----    -----"
-#              4      6        6       6         1    4     4    4  1   4    2    
-
+#              4      6        6       6         1    4     4    4  1   4    2          4         4       4
+# 
+# ["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"]
+# my expection:
+# expected = "  11      3801      1      123         1\n+  4    - 2999    + 2    +  49    - 9380\n----    "
+# actual exppectation:
+# expected = "  11      3801      1      123         1\n+  4    - 2999    + 2    +  49    - 9380\n----    ------    ---    -----    ------"
+# [top, bot, max, total]
+# 11 + 4 => [2, 1, 2, 4]
+# '{total - top * " "}{11}\n{+}{total-bot-1 * " "}{bot}\n{total * "-"}'
