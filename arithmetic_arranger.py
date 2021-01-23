@@ -1,6 +1,5 @@
 def arithmetic_arranger(problems, display_ans):
     problems = [ string.split(' ') for string in problems ]
-    # use eval() function to find answer
     
     for problem in problems:
         problem.append(len(problem[0]))
@@ -8,23 +7,26 @@ def arithmetic_arranger(problems, display_ans):
         problem.append(max(problem[3], problem[4]))
         problem.append(problem[5] + 2)
         problem.append('{spaces}{top}'.format(spaces = (problem[6] - problem[3]) * " ", top = problem[0]))
-        
-    problem_dictionary = {
-        "string_1": "    ".join(problem[7] for problem in problems),
-        # "string_2": [problem[8] for problem in problems],
-        # "string_3": [problem[9] for problem in problems],
-        "answer": "",
-        "string_4": "",
-    }
-    #     "string_1": '{total_char_len - top_len * " "}{top}',
-    #     "string_2": '{operator}{total_char_len - bottom_len - 1 * " "}{bottom}',
-    #     "string_3": '{total_char_len * "-"}
-    
-    
+        problem.append('{operator}{spaces}{bottom}'.format(operator = problem[1], spaces = (problem[6] - problem[4] - 1) * " ", bottom = problem[2]))
+        problem.append('{hypen}'.format(hypen = problem[6] * "-"))
+        problem.append(str(eval(problem[0] + problem[1] + problem[2])))
+        problem.append('{spaces}{answer}'.format(spaces = (problem[6] - len(problem[10])) * " ", answer = problem[10]))
 
+    string_list = [
+        "    ".join(problem[7] for problem in problems),
+        "    ".join(problem[8] for problem in problems),
+        "    ".join(problem[9] for problem in problems),
+    ]
     
-    print(problem_dictionary)
-    return "done"
+    ans_string = "    ".join(problem[11] for problem in problems)
+    
+    formatted_string = "\n".join(string_list)
+    
+    if display_ans == True:
+        return formatted_string + '\n' + ans_string
+    else:
+        return formatted_string
+    
 
 # notes:
 # number of hyphens "-" is determined by the longest number of digits by numerator opertor or answer, and add two.
