@@ -1,23 +1,29 @@
 def arithmetic_arranger(problems, display_ans):
     problems = [ string.split(' ') for string in problems ]
-    # problemDict = [{
-    #     "top": problems[x][0],
-    #     "operator": problems[x][1]
-    #     "bottom": problems[x][2],
-    #     "top_len": problems[x][0].length
-    #     "bottom_len": problems[x][2].length
-    #     "max_char_len": max(top_len, bot_len),
-    #     "total_char_len": max_char_length + 2,
-    #     "string_1": '{total_char_len - top_len * " "}{top}'
-    #     "string_2": '{operator}{total_char_len - bottom_len - 1 * " "}{bottom}'
-    #     "string_3": '{total_char_len * "-"}
-    # }]
-    # 
-    # dont form the answer until after the dictionary array is filled
-    # answer = [string_1, string_2, string_3, (string_4)]
-    # return answer.join("\n")
+    # use eval() function to find answer
     
-    print("{0}  {1}  {2}  {3}".format(problems[0][0], problems[1][0], problems[2][0], problems[3][0]))
+    for problem in problems:
+        problem.append(len(problem[0]))
+        problem.append(len(problem[2]))
+        problem.append(max(problem[3], problem[4]))
+        problem.append(problem[5] + 2)
+        problem.append('{spaces}{top}'.format(spaces = (problem[6] - problem[3]) * " ", top = problem[0]))
+        
+    problem_dictionary = {
+        "string_1": "    ".join(problem[7] for problem in problems),
+        # "string_2": [problem[8] for problem in problems],
+        # "string_3": [problem[9] for problem in problems],
+        "answer": "",
+        "string_4": "",
+    }
+    #     "string_1": '{total_char_len - top_len * " "}{top}',
+    #     "string_2": '{operator}{total_char_len - bottom_len - 1 * " "}{bottom}',
+    #     "string_3": '{total_char_len * "-"}
+    
+    
+
+    
+    print(problem_dictionary)
     return "done"
 
 # notes:
@@ -41,3 +47,21 @@ def arithmetic_arranger(problems, display_ans):
 # [top, bot, max, total]
 # 11 + 4 => [2, 1, 2, 4]
 # '{total - top * " "}{11}\n{+}{total-bot-1 * " "}{bot}\n{total * "-"}'
+
+
+    # problemDict = [{
+    #     "top": problems[x][0],
+    #     "operator": problems[x][1]
+    #     "bottom": problems[x][2],
+    #     "top_len": problems[x][0].length
+    #     "bottom_len": problems[x][2].length
+    #     "max_char_len": max(top_len, bot_len),
+    #     "total_char_len": max_char_length + 2,
+    #     "string_1": '{total_char_len - top_len * " "}{top}',
+    #     "string_2": '{operator}{total_char_len - bottom_len - 1 * " "}{bottom}',
+    #     "string_3": '{total_char_len * "-"}
+    # }]
+    # 
+    # dont form the answer until after the dictionary array is filled
+    # answer = [string_1, string_2, string_3, (string_4)]
+    # return answer.join("\n")
