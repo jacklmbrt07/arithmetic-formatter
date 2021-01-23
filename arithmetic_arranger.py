@@ -1,16 +1,26 @@
-def arithmetic_arranger(problems, display_ans):
+def arithmetic_arranger(problems, answer=None):
+    if len(problems) > 5:
+        return "Error: Too many problems."
+    
     problems = [ string.split(' ') for string in problems ]
     
     for problem in problems:
-        problem.append(len(problem[0]))
-        problem.append(len(problem[2]))
-        problem.append(max(problem[3], problem[4]))
-        problem.append(problem[5] + 2)
-        problem.append('{spaces}{top}'.format(spaces = (problem[6] - problem[3]) * " ", top = problem[0]))
-        problem.append('{operator}{spaces}{bottom}'.format(operator = problem[1], spaces = (problem[6] - problem[4] - 1) * " ", bottom = problem[2]))
-        problem.append('{hypen}'.format(hypen = problem[6] * "-"))
-        problem.append(str(eval(problem[0] + problem[1] + problem[2])))
-        problem.append('{spaces}{answer}'.format(spaces = (problem[6] - len(problem[10])) * " ", answer = problem[10]))
+        if problem[1] != '+' and problem[1] != '-':
+            return "Error: Operator must be '+' or '-'."
+        elif len(problem[0]) > 4 or len(problem[2]) > 4:
+            return "Error: Numbers cannot be more than four digits."
+        elif not problem[0].isdigit() or not problem[2].isdigit():
+            return "Error: Numbers must only contain digits."
+        else: 
+            problem.append(len(problem[0]))
+            problem.append(len(problem[2]))
+            problem.append(max(problem[3], problem[4]))
+            problem.append(problem[5] + 2)
+            problem.append('{spaces}{top}'.format(spaces = (problem[6] - problem[3]) * " ", top = problem[0]))
+            problem.append('{operator}{spaces}{bottom}'.format(operator = problem[1], spaces = (problem[6] - problem[4] - 1) * " ", bottom = problem[2]))
+            problem.append('{hypen}'.format(hypen = problem[6] * "-"))
+            problem.append(str(eval(problem[0] + problem[1] + problem[2])))
+            problem.append('{spaces}{answer}'.format(spaces = (problem[6] - len(problem[10])) * " ", answer = problem[10]))
 
     string_list = [
         "    ".join(problem[7] for problem in problems),
@@ -22,7 +32,7 @@ def arithmetic_arranger(problems, display_ans):
     
     formatted_string = "\n".join(string_list)
     
-    if display_ans == True:
+    if answer == True:
         return formatted_string + '\n' + ans_string
     else:
         return formatted_string
